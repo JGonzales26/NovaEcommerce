@@ -29,13 +29,12 @@ public sealed class CartController(ICartService cartService) : Controller
     {
         var userId = GetUserId();
 
-        using var reader = new StreamReader(Request.Body);
-        var body = await reader.ReadToEndAsync();
-
         List<CartItemSyncDto> items;
         try
         {
-            items = JsonSerializer.Deserialize<List<CartItemSyncDto>>(body) ?? new();
+            items = await JsonSerializer.DeserializeAsync<List<CartItemSyncDto>>(
+                Request.Body,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new();
         }
         catch
         {
