@@ -17,3 +17,9 @@ public sealed class CartDto
     public int TotalItems => Items.Sum(i => i.Quantity);
     public decimal Total => Items.Sum(i => i.Subtotal);
 }
+
+public sealed class CartItemSyncDto
+{
+    public int ProductId { get; set; }
+    public int Quantity { get; set; }
+}

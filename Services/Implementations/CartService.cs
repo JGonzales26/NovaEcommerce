@@ -96,4 +96,52 @@ public sealed class CartService(
         cart.UpdatedAt = DateTime.UtcNow;
         await carts.SaveChangesAsync();
     }
+
+    public async Task<CartDto> MergeCartAsync(int userId, List<CartItemSyncDto> items)
+    {
+        if (items.Count == 0)
+            return await GetCartAsync(userId);
+
+        var cart = await carts.GetByUserIdAsync(userId);
+
+        if (cart is null)
+        {
+            cart = new Cart
+            {
+                UserId = userId,
+                CreatedAt = DateTime.UtcNow
+            };
+            await carts.AddAsync(cart);
+        }
+
+        foreach (var syncItem in items)
+        {
+            var product = await products.GetByIdAsync(syncItem.ProductId);
+            if (product is null || !product.IsActive || product.Stock == 0)
+                continue;
+
+            var quantity = Math.Min(syncItem.Quantity, product.Stock);
+            if (quantity <= 0) continue;
+
+            var existing = cart.Items.FirstOrDefault(i => i.ProductId == syncItem.ProductId);
+            if (existing is not null)
+            {
+                existing.Quantity = quantity;
+            }
+            else
+            {
+                cart.Items.Add(new CartItem
+                {
+                    ProductId = syncItem.ProductId,
+                    Quantity = quantity,
+                    UnitPrice = product.Price
+                });
+            }
+        }
+
+        cart.UpdatedAt = DateTime.UtcNow;
+        await carts.SaveChangesAsync();
+
+        return await GetCartAsync(userId);
+    }
 }
