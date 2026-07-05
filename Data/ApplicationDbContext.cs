@@ -9,6 +9,8 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
     public DbSet<AppRole> Roles => Set<AppRole>();
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Category> Categories => Set<Category>();
+    public DbSet<Cart> Carts => Set<Cart>();
+    public DbSet<CartItem> CartItems => Set<CartItem>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -28,6 +30,18 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
         {
             entity.Property(product => product.Price).HasColumnType("decimal(18,2)");
             entity.HasOne(product => product.Category).WithMany(category => category.Products).HasForeignKey(product => product.CategoryId);
+        });
+
+        modelBuilder.Entity<Cart>(entity =>
+        {
+            entity.HasOne(cart => cart.User).WithMany().HasForeignKey(cart => cart.UserId);
+        });
+
+        modelBuilder.Entity<CartItem>(entity =>
+        {
+            entity.Property(item => item.UnitPrice).HasColumnType("decimal(18,2)");
+            entity.HasOne(item => item.Cart).WithMany(cart => cart.Items).HasForeignKey(item => item.CartId);
+            entity.HasOne(item => item.Product).WithMany().HasForeignKey(item => item.ProductId);
         });
     }
 }
