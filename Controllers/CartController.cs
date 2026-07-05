@@ -1,4 +1,6 @@
 using System.Security.Claims;
+using System.Text.Json;
+using EcommerceMVC.DTOs;
 using EcommerceMVC.Services.Interfaces;
 using EcommerceMVC.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -6,25 +8,45 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceMVC.Controllers;
 
-[Authorize(Policy = "CustomerOnly")]
 public sealed class CartController(ICartService cartService) : Controller
 {
     public async Task<IActionResult> Index()
     {
-        var userId = GetUserId();
-        var cart = await cartService.GetCartAsync(userId);
-        return View(new CartIndexViewModel { Cart = cart });
+        if (User.Identity?.IsAuthenticated == true)
+        {
+            var userId = GetUserId();
+            var cart = await cartService.GetCartAsync(userId);
+            return View(new CartIndexViewModel { Cart = cart, IsAuthenticated = true });
+        }
+
+        return View(new CartIndexViewModel { Cart = new CartDto(), IsAuthenticated = false });
     }
 
+    [Authorize(Policy = "CustomerOnly")]
     [HttpPost]
-    public async Task<IActionResult> Add(int productId, int quantity = 1)
+    [IgnoreAntiforgeryToken]
+    public async Task<IActionResult> Sync()
     {
         var userId = GetUserId();
-        await cartService.AddItemAsync(userId, productId, quantity);
-        TempData["Success"] = "Producto agregado al carrito.";
-        return RedirectToAction("Index");
+
+        using var reader = new StreamReader(Request.Body);
+        var body = await reader.ReadToEndAsync();
+
+        List<CartItemSyncDto> items;
+        try
+        {
+            items = JsonSerializer.Deserialize<List<CartItemSyncDto>>(body) ?? new();
+        }
+        catch
+        {
+            items = new();
+        }
+
+        var cart = await cartService.MergeCartAsync(userId, items);
+        return Json(new { success = true, totalItems = cart.TotalItems });
     }
 
+    [Authorize(Policy = "CustomerOnly")]
     [HttpPost]
     public async Task<IActionResult> Update(int productId, int quantity)
     {
@@ -34,6 +56,7 @@ public sealed class CartController(ICartService cartService) : Controller
         return RedirectToAction("Index");
     }
 
+    [Authorize(Policy = "CustomerOnly")]
     [HttpPost]
     public async Task<IActionResult> Remove(int productId)
     {
