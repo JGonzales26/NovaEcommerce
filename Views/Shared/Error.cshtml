@@ -1,0 +1,13 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="rounded-lg border border-red-200 bg-red-50 p-6 text-red-950">
+    <h1 class="text-2xl font-bold">No se pudo completar la operacion</h1>
+    <p class="mt-2">@(ViewData["Message"] ?? "Ocurrio un error inesperado.")</p>
+    @if (Model?.ShowRequestId == true)
+    {
+        <p class="mt-4 text-sm text-red-800">Request ID: <code>@Model.RequestId</code></p>
+    }
+</div>

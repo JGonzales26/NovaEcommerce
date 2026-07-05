@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NovaCommerce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="min-h-screen bg-zinc-50 text-zinc-950 antialiased">
+    <header class="sticky top-0 z-40 border-b border-zinc-200 bg-white/95 backdrop-blur">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+            <a asp-controller="Home" asp-action="Index" class="text-lg font-bold tracking-tight">NovaCommerce</a>
+            <button type="button" class="rounded-md border border-zinc-300 p-2 md:hidden" data-menu-button aria-label="Abrir menu">
+                <span class="block h-0.5 w-5 bg-zinc-900"></span>
+                <span class="mt-1 block h-0.5 w-5 bg-zinc-900"></span>
+                <span class="mt-1 block h-0.5 w-5 bg-zinc-900"></span>
+            </button>
+            <div class="hidden items-center gap-5 text-sm font-medium md:flex" data-menu>
+                <a asp-controller="Products" asp-action="Index" class="hover:text-emerald-700">Catalogo</a>
+                
+                @if (User.IsInRole(AppRoles.Admin))
+                {
+                    @* Ahora apunta directo al CRUD de Productos de tu T2 *@
+                    <a asp-controller="AdminProducts" asp-action="Index" class="hover:text-emerald-700">Admin CRUD</a>
+                }
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button class="rounded-md bg-zinc-900 px-4 py-2 text-white hover:bg-zinc-700">Salir</button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login" class="hover:text-emerald-700">Login</a>
+                    <a asp-controller="Account" asp-action="Register" class="rounded-md bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-700">Registro</a>
+                }
+            </div>
+        </nav>
+        <div class="hidden border-t border-zinc-200 bg-white px-4 py-3 text-sm font-medium md:hidden" data-mobile-menu>
+            <a asp-controller="Products" asp-action="Index" class="block py-2">Catalogo</a>
+            @if (User.IsInRole(AppRoles.Admin))
+            {
+                <a asp-controller="AdminProducts" asp-action="Index" class="block py-2">Admin CRUD</a>
+            }
+            <a asp-controller="Account" asp-action="Login" class="block py-2">Cuenta</a>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        @if (TempData["Success"] is string success)
+        {
+            <div class="mb-6 rounded-md border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">@success</div>
+        }
+        @RenderBody()
+    </main>
+
+    <footer class="mt-12 border-t border-zinc-200 bg-white">
+        <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-sm text-zinc-500 sm:px-6 lg:px-8">
+            <span>NovaCommerce</span>
+            <span>ASP.NET Core MVC, SQLite, TailwindCSS.</span>
+        </div>
+    </footer>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

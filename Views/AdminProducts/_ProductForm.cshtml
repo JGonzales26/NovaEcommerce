@@ -1,0 +1,41 @@
+@model ProductFormViewModel
+
+<form method="post" class="mt-6 grid gap-4 rounded-lg border border-zinc-200 bg-white p-6">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input asp-for="Id" type="hidden" />
+    <div>
+        <label asp-for="Name" class="text-sm font-medium"></label>
+        <input asp-for="Name" class="field mt-1" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="Description" class="text-sm font-medium"></label>
+        <textarea asp-for="Description" class="field mt-1 min-h-28"></textarea>
+        <span asp-validation-for="Description"></span>
+    </div>
+    <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+            <label asp-for="Price" class="text-sm font-medium"></label>
+            <input asp-for="Price" class="field mt-1" />
+            <span asp-validation-for="Price"></span>
+        </div>
+        <div>
+            <label asp-for="Stock" class="text-sm font-medium"></label>
+            <input asp-for="Stock" class="field mt-1" />
+            <span asp-validation-for="Stock"></span>
+        </div>
+    </div>
+    <div>
+        <label asp-for="ImageUrl" class="text-sm font-medium"></label>
+        <input asp-for="ImageUrl" class="field mt-1" />
+        <span asp-validation-for="ImageUrl"></span>
+    </div>
+    <div>
+        <label asp-for="CategoryId" class="text-sm font-medium"></label>
+        <select asp-for="CategoryId" asp-items="Model.Categories" class="field mt-1">
+            <option value="">Seleccionar</option>
+        </select>
+        <span asp-validation-for="CategoryId"></span>
+    </div>
+    <button class="rounded-md bg-emerald-600 px-5 py-3 font-semibold text-white hover:bg-emerald-700">Guardar</button>
+</form>

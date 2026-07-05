@@ -1,0 +1,22 @@
+@model ProductDto
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<section class="grid gap-8 lg:grid-cols-2">
+    <img class="h-[440px] w-full rounded-lg object-cover" src="@Model.ImageUrl" alt="@Model.Name" />
+    <div>
+        <p class="text-sm font-semibold uppercase text-emerald-700">@Model.CategoryName</p>
+        <h1 class="mt-2 text-4xl font-bold">@Model.Name</h1>
+        <p class="mt-4 text-lg leading-8 text-zinc-600">@Model.Description</p>
+        <div class="mt-6 flex items-center gap-4">
+            <span class="text-3xl font-bold">S/ @Model.Price.ToString("0.00")</span>
+            <span class="rounded-full bg-zinc-100 px-3 py-1 text-sm">@Model.Stock en stock</span>
+        </div>
+        <form asp-controller="Cart" asp-action="Add" method="post" class="mt-8 flex max-w-sm gap-3">
+            <input type="hidden" name="productId" value="@Model.Id" />
+            <input class="field max-w-24" type="number" name="quantity" min="1" max="@Model.Stock" value="1" />
+            <button class="flex-1 rounded-md bg-emerald-600 px-5 py-3 font-semibold text-white hover:bg-emerald-700">Agregar al carrito</button>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,39 @@
+@model PagedResult<ProductDto>
+@{
+    ViewData["Title"] = "Productos admin";
+}
+
+<div class="grid gap-6 lg:grid-cols-[240px_1fr]">
+    <partial name="_AdminSidebar" />
+    <section>
+        <div class="flex items-center justify-between">
+            <h1 class="text-3xl font-bold">Productos</h1>
+            <a href="/Admin/Products/Create" class="rounded-md bg-emerald-600 px-4 py-2 font-semibold text-white">Nuevo</a>
+        </div>
+        <div class="mt-6 overflow-hidden rounded-lg border bg-white">
+            <table class="w-full text-left text-sm">
+                <thead class="bg-zinc-100 text-zinc-600">
+                    <tr><th class="p-3">Nombre</th><th class="p-3">Categoria</th><th class="p-3">Precio</th><th class="p-3">Stock</th><th class="p-3 text-right">Acciones</th></tr>
+                </thead>
+                <tbody>
+                @foreach (var product in Model.Items)
+                {
+                    <tr class="border-t">
+                        <td class="p-3 font-semibold">@product.Name</td>
+                        <td class="p-3">@product.CategoryName</td>
+                        <td class="p-3">S/ @product.Price.ToString("0.00")</td>
+                        <td class="p-3">@product.Stock</td>
+                        <td class="p-3 text-right">
+                            <a href="/Admin/Products/Edit/@product.Id" class="font-semibold text-emerald-700">Editar</a>
+                            <form action="/Admin/Products/Delete/@product.Id" method="post" class="ml-3 inline">
+                                @Html.AntiForgeryToken()
+                                <button data-confirm="Desactivar producto?" class="font-semibold text-red-700">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
