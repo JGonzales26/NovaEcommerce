@@ -144,4 +144,28 @@ public sealed class CartService(
 
         return await GetCartAsync(userId);
     }
+
+    public async Task CheckoutAsync(int userId)
+    {
+        var cart = await carts.GetByUserIdAsync(userId)
+            ?? throw new NotFoundException("Carrito no encontrado.");
+
+        if (cart.Items.Count == 0)
+            throw new ValidationException("El carrito esta vacio.");
+
+        foreach (var item in cart.Items.ToList())
+        {
+            var product = await products.GetByIdAsync(item.ProductId)
+                ?? throw new NotFoundException($"Producto no encontrado.");
+
+            if (product.Stock < item.Quantity)
+                throw new ValidationException($"Stock insuficiente para {product.Name}. Disponible: {product.Stock}.");
+
+            product.Stock -= item.Quantity;
+            products.Update(product);
+            carts.RemoveItem(item);
+        }
+
+        await carts.SaveChangesAsync();
+    }
 }

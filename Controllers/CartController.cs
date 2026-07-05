@@ -66,6 +66,16 @@ public sealed class CartController(ICartService cartService) : Controller
         return RedirectToAction("Index");
     }
 
+    [Authorize(Policy = "CustomerOnly")]
+    [HttpPost]
+    public async Task<IActionResult> Checkout()
+    {
+        var userId = GetUserId();
+        await cartService.CheckoutAsync(userId);
+        TempData["Success"] = "Compra realizada con exito. El stock ha sido actualizado.";
+        return RedirectToAction("Index");
+    }
+
     private int GetUserId() =>
         int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 }
