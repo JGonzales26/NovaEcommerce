@@ -59,12 +59,14 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICartRepository, CartRepository>();
 
 // --- Servicios Base T2 ---
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
+builder.Services.AddScoped<ICartService, CartService>();
 
 // --- Validadores Base T2 ---
 builder.Services.AddScoped<IValidator<ProductFormViewModel>, ProductValidator>();
@@ -93,7 +95,8 @@ await DatabaseSeeder.SeedAsync(app.Services);
 // --- Rutas Ajustadas ---
 app.MapControllerRoute(
     name: "admin",
-    pattern: "Admin/{controller=AdminProducts}/{action=Index}/{id?}"); // Modificado para que apunte directo a tu CRUD
+    pattern: "Admin/{controller=AdminProducts}/{action=Index}/{id?}",
+    constraints: new { controller = "AdminProducts|AdminUsers" });
 
 app.MapControllerRoute(
     name: "default",
