@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net8.0": {
       "AutoMapper/12.0.1": {
@@ -2563,28 +2563,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\BRISS\\.nuget\\packages\\": {}
+    "C:\\Users\\Gianella\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Evolucion\\EcommerceMVC\\EcommerceMVC.csproj",
+      "projectUniqueName": "C:\\Users\\Gianella\\NovaEcommerce\\EcommerceMVC.csproj",
       "projectName": "EcommerceMVC",
-      "projectPath": "D:\\Evolucion\\EcommerceMVC\\EcommerceMVC.csproj",
-      "packagesPath": "C:\\Users\\BRISS\\.nuget\\packages\\",
-      "outputPath": "D:\\Evolucion\\EcommerceMVC\\obj\\",
+      "projectPath": "C:\\Users\\Gianella\\NovaEcommerce\\EcommerceMVC.csproj",
+      "packagesPath": "C:\\Users\\Gianella\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gianella\\NovaEcommerce\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\BRISS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Gianella\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {}
         }
@@ -2598,10 +2601,12 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net8.0": {
+        "framework": "net8.0",
         "targetAlias": "net8.0",
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
@@ -2634,6 +2639,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.28, 8.0.28]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[8.0.28, 8.0.28]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.28, 8.0.28]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.28, 8.0.28]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -2642,7 +2665,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.421/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
