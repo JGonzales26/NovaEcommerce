@@ -1,0 +1,68 @@
+@model CartIndexViewModel
+@{
+    ViewData["Title"] = "Carrito";
+}
+
+<div class="mb-6">
+    <h1 class="text-3xl font-bold">Carrito</h1>
+    <p class="mt-1 text-zinc-600">Revisa los productos en tu carrito antes de continuar.</p>
+</div>
+
+@if (Model.Cart.Items.Count == 0)
+{
+    <div class="rounded-lg border border-zinc-200 bg-white p-12 text-center">
+        <p class="text-lg text-zinc-500">Tu carrito esta vacio.</p>
+        <a asp-controller="Products" asp-action="Index" class="mt-4 inline-block rounded-md bg-emerald-600 px-5 py-2 font-semibold text-white hover:bg-emerald-700">
+            Explorar productos
+        </a>
+    </div>
+}
+else
+{
+    <div class="grid gap-6 lg:grid-cols-[1fr_360px]">
+        <div class="space-y-4">
+            @foreach (var item in Model.Cart.Items)
+            {
+                <div class="flex gap-4 rounded-lg border border-zinc-200 bg-white p-4">
+                    <img class="h-24 w-24 rounded-md object-cover" src="@item.ImageUrl" alt="@item.ProductName" />
+                    <div class="flex flex-1 flex-col justify-between">
+                        <div>
+                            <h3 class="font-semibold">@item.ProductName</h3>
+                            <p class="text-sm text-zinc-500">S/ @item.UnitPrice.ToString("0.00")</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <form asp-action="Update" method="post" class="flex items-center gap-2">
+                                <input type="hidden" name="productId" value="@item.ProductId" />
+                                <input type="number" name="quantity" value="@item.Quantity" min="1" max="100000"
+                                       class="field w-20 text-center" />
+                                <button class="rounded-md bg-zinc-100 px-3 py-1 text-sm hover:bg-zinc-200">Actualizar</button>
+                            </form>
+                            <form asp-action="Remove" method="post" class="ml-auto">
+                                <input type="hidden" name="productId" value="@item.ProductId" />
+                                <button class="text-sm text-red-600 hover:text-red-800">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="h-fit rounded-lg border border-zinc-200 bg-white p-6">
+            <h2 class="mb-4 text-lg font-semibold">Resumen</h2>
+            <div class="space-y-3 text-sm">
+                <div class="flex justify-between">
+                    <span class="text-zinc-500">Productos</span>
+                    <span>@Model.Cart.TotalItems</span>
+                </div>
+                <div class="flex justify-between border-t border-zinc-200 pt-3 font-semibold">
+                    <span>Total</span>
+                    <span>S/ @Model.Cart.Total.ToString("0.00")</span>
+                </div>
+            </div>
+            <a asp-controller="Products" asp-action="Index"
+               class="mt-6 block rounded-md border border-zinc-300 px-4 py-2 text-center text-sm font-medium hover:bg-zinc-50">
+                Seguir comprando
+            </a>
+        </div>
+    </div>
+}
