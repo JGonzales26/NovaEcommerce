@@ -18,10 +18,10 @@
             </button>
             <div class="hidden items-center gap-5 text-sm font-medium md:flex" data-menu>
                 <a asp-controller="Products" asp-action="Index" class="hover:text-emerald-700">Catalogo</a>
-                @if (User.Identity?.IsAuthenticated == true)
-                {
-                    <a asp-controller="Cart" asp-action="Index" class="hover:text-emerald-700">Carrito</a>
-                }
+                <a asp-controller="Cart" asp-action="Index" class="relative hover:text-emerald-700">
+                    Carrito
+                    <span data-cart-badge class="absolute -right-4 -top-2 hidden rounded-full bg-emerald-600 px-1.5 py-0.5 text-xs font-bold text-white"></span>
+                </a>
                 
                 @if (User.IsInRole(AppRoles.Admin))
                 {
@@ -43,10 +43,7 @@
         </nav>
         <div class="hidden border-t border-zinc-200 bg-white px-4 py-3 text-sm font-medium md:hidden" data-mobile-menu>
             <a asp-controller="Products" asp-action="Index" class="block py-2">Catalogo</a>
-            @if (User.Identity?.IsAuthenticated == true)
-            {
-                <a asp-controller="Cart" asp-action="Index" class="block py-2">Carrito</a>
-            }
+            <a asp-controller="Cart" asp-action="Index" class="block py-2">Carrito</a>
             @if (User.IsInRole(AppRoles.Admin))
             {
                 <a asp-controller="AdminProducts" asp-action="Index" class="block py-2">Admin CRUD</a>
@@ -70,6 +67,7 @@
         </div>
     </footer>
 
+    <script src="~/js/cart.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
