@@ -95,7 +95,8 @@ await DatabaseSeeder.SeedAsync(app.Services);
 // --- Rutas Ajustadas ---
 app.MapControllerRoute(
     name: "admin",
-    pattern: "Admin/{controller=AdminProducts}/{action=Index}/{id?}"); // Modificado para que apunte directo a tu CRUD
+    pattern: "Admin/{controller=AdminProducts}/{action=Index}/{id?}",
+    constraints: new { controller = "AdminProducts|AdminUsers" });
 
 app.MapControllerRoute(
     name: "default",
