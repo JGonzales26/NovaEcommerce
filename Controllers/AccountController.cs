@@ -4,6 +4,9 @@ using EcommerceMVC.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization; // ➔ Soluciona [Authorize]
+using EcommerceMVC.Models;                 // ➔ Soluciona 'AppUser'
+using System.Threading.Tasks;              // ➔ Por si falta para el Task
 
 namespace EcommerceMVC.Controllers;
 
@@ -57,6 +60,33 @@ public sealed class AccountController(IAuthService auth) : Controller
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         return RedirectToAction("Index", "Home");
     }
+    [HttpGet]
+    [Authorize]
+    [Route("/Account/Profile")]
+    public async Task<IActionResult> Profile()
+    {
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (!int.TryParse(userIdClaim, out int userId))
+        {
+            return RedirectToAction("Login");
+        }
+
+        var user = await auth.GetUserByIdAsync(userId);
+        if (user is null)
+        {
+            return NotFound("Usuario no encontrado.");
+        }
+
+        // Cargamos los ViewData tal como los busca tu archivo Profile.cshtml
+        ViewData["FullName"] = user.FullName;
+        ViewData["Email"] = user.Email;
+        ViewData["Role"] = user.Role?.Name ?? "Cliente";
+        ViewData["PasswordHash"] = "••••••••••••"; 
+
+        return View();
+    }
+
+    
 
     public IActionResult AccessDenied() => View();
 

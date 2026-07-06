@@ -8,4 +8,6 @@ public interface IAuthService
 {
     Task<(ServiceResult Result, AppUser? User)> LoginAsync(LoginViewModel model);
     Task<(ServiceResult Result, AppUser? User)> RegisterAsync(RegisterViewModel model);
+    Task<AppUser?> GetUserByIdAsync(int id);
+    Task UpdateUserAsync(AppUser user);
 }

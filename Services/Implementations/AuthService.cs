@@ -47,4 +47,17 @@ public sealed class AuthService(
 
         return (ServiceResult.Success(), user);
     }
+
+    public async Task<AppUser?> GetUserByIdAsync(int id)
+{
+    return await users.GetByIdAsync(id);
+}
+
+public async Task UpdateUserAsync(AppUser user)
+{
+    users.Update(user);
+    await users.SaveChangesAsync();
+}
+    
+    
 }
