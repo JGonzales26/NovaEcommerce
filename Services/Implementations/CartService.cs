@@ -12,7 +12,7 @@ public sealed class CartService(
     IProductRepository products,
     IMapper mapper) : ICartService
 {
-    public async Task<CartDto> GetCartAsync(int userId)
+    public async Task<CartDto> GetCartAsync(int userId, string sessionId)
     {
         var cart = await carts.GetByUserIdAsync(userId);
         return cart is null ? new CartDto() : mapper.Map<CartDto>(cart);
@@ -97,10 +97,10 @@ public sealed class CartService(
         await carts.SaveChangesAsync();
     }
 
-    public async Task<CartDto> MergeCartAsync(int userId, List<CartItemSyncDto> items)
+    public async Task<CartDto> MergeCartAsync(int userId, List<CartItemSyncDto> items, string sessionId)
     {
         if (items.Count == 0)
-            return await GetCartAsync(userId);
+            return await GetCartAsync(userId, sessionId);
 
         var cart = await carts.GetByUserIdAsync(userId);
 
@@ -142,10 +142,10 @@ public sealed class CartService(
         cart.UpdatedAt = DateTime.UtcNow;
         await carts.SaveChangesAsync();
 
-        return await GetCartAsync(userId);
+        return await GetCartAsync(userId, sessionId);
     }
 
-    public async Task CheckoutAsync(int userId)
+    public async Task CheckoutAsync(int userId, string sessionId)
     {
         var cart = await carts.GetByUserIdAsync(userId)
             ?? throw new NotFoundException("Carrito no encontrado.");
