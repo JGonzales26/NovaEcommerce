@@ -10,4 +10,6 @@ public interface ICartRepository
     void Update(Cart cart);
     void RemoveItem(CartItem item);
     Task SaveChangesAsync();
+    Task<IEnumerable<CartItem>> GetItemsAsync(int userId, string sessionId);
+    void RemoveRange(IEnumerable<CartItem> items);
 }
