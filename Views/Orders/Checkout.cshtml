@@ -1,0 +1,34 @@
+@model CheckoutViewModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="mx-auto max-w-2xl rounded-lg border border-zinc-200 bg-white p-6 shadow-sm">
+    <h1 class="text-2xl font-bold">Checkout</h1>
+    <form method="post" class="mt-6 grid gap-4">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label asp-for="FullName" class="text-sm font-medium"></label>
+            <input asp-for="FullName" class="field mt-1" />
+            <span asp-validation-for="FullName"></span>
+        </div>
+        <div>
+            <label asp-for="Address" class="text-sm font-medium"></label>
+            <input asp-for="Address" class="field mt-1" />
+            <span asp-validation-for="Address"></span>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+                <label asp-for="City" class="text-sm font-medium"></label>
+                <input asp-for="City" class="field mt-1" />
+                <span asp-validation-for="City"></span>
+            </div>
+            <div>
+                <label asp-for="Phone" class="text-sm font-medium"></label>
+                <input asp-for="Phone" class="field mt-1" />
+                <span asp-validation-for="Phone"></span>
+            </div>
+        </div>
+        <button class="rounded-md bg-emerald-600 px-5 py-3 font-semibold text-white hover:bg-emerald-700">Crear pedido</button>
+    </form>
+</div>

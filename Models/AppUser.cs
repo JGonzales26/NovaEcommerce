@@ -20,5 +20,6 @@ public sealed class AppUser
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public bool IsActive { get; set; } = true;
+    public ICollection<Order> Orders { get; set; } = new List<Order>();
 
 }
