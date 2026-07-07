@@ -10,7 +10,7 @@ using System.Threading.Tasks;              // ➔ Por si falta para el Task
 
 namespace EcommerceMVC.Controllers;
 
-public sealed class AccountController(IAuthService auth) : Controller
+public sealed class AccountController(IAuthService auth ,IPasswordHasher passwordHasher) : Controller
 {
     [HttpGet]
     public IActionResult Login(string? returnUrl = null)
@@ -80,20 +80,33 @@ public sealed class AccountController(IAuthService auth) : Controller
         ViewData["FullName"] = user.FullName;
         ViewData["Email"] = user.Email;
         ViewData["Role"] = user.Role?.Name ?? "Cliente";
-        ViewData["PasswordHash"] = "••••••••••••"; 
-
         return View();
     }
 
     [HttpPost]
     [Authorize]
     [Route("/Account/UpdateProfile")]
-    public async Task<IActionResult> UpdateProfile(string fullName, string email)
+    public async Task<IActionResult> UpdateProfile(string fullName, string email, string? newPassword, string? confirmPassword)
     {
         if (string.IsNullOrWhiteSpace(fullName) || string.IsNullOrWhiteSpace(email))
         {
-            TempData["Error"] = "Todos los campos son obligatorios.";
+            TempData["Error"] = "El nombre y el correo electrónico son obligatorios.";
             return RedirectToAction("Profile");
+        }
+
+        if (!string.IsNullOrEmpty(newPassword))
+        {
+            if (newPassword != confirmPassword)
+            {
+                TempData["Error"] = "Las contraseñas no coinciden.";
+                return RedirectToAction("Profile");
+            }
+            
+            if (newPassword.Length < 6) 
+            {
+                TempData["Error"] = "La nueva contraseña debe tener al menos 6 caracteres.";
+                return RedirectToAction("Profile");
+            }
         }
 
         var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -111,12 +124,17 @@ public sealed class AccountController(IAuthService auth) : Controller
         userInDb.FullName = fullName.Trim();
         userInDb.Email = email.Trim().ToLowerInvariant();
 
+        if (!string.IsNullOrEmpty(newPassword))
+        {
+            userInDb.PasswordHash = passwordHasher.Hash(newPassword); 
+        }
+
         await auth.UpdateUserAsync(userInDb);
 
         var currentRole = User.FindFirst(ClaimTypes.Role)?.Value ?? "Cliente";
         await SignInAsync(userInDb.Id, userInDb.FullName, userInDb.Email, currentRole, false);
 
-        TempData["Success"] = "¡Perfil actualizado con éxito!";
+        TempData["Success"] = "¡Perfil y contraseña actualizados con éxito!";
         return RedirectToAction("Profile");
     }
 
