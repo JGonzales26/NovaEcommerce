@@ -1,0 +1,17 @@
+@model AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<div class="grid gap-6 lg:grid-cols-[240px_1fr]">
+    <partial name="_AdminSidebar" />
+    <section>
+        <h1 class="text-3xl font-bold">Dashboard</h1>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="rounded-lg border bg-white p-5"><p class="text-sm text-zinc-500">Productos</p><p class="mt-2 text-3xl font-bold">@Model.ProductCount</p></div>
+            <div class="rounded-lg border bg-white p-5"><p class="text-sm text-zinc-500">Usuarios</p><p class="mt-2 text-3xl font-bold">@Model.UserCount</p></div>
+            <div class="rounded-lg border bg-white p-5"><p class="text-sm text-zinc-500">Pedidos</p><p class="mt-2 text-3xl font-bold">@Model.OrderCount</p></div>
+            <div class="rounded-lg border bg-white p-5"><p class="text-sm text-zinc-500">Ingresos</p><p class="mt-2 text-3xl font-bold">S/ @Model.Revenue.ToString("0.00")</p></div>
+        </div>
+    </section>
+</div>
