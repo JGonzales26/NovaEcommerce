@@ -85,9 +85,40 @@ public sealed class AccountController(IAuthService auth) : Controller
         return View();
     }
 
-    
+    [HttpPost]
+    [Authorize]
+    [Route("/Account/UpdateProfile")]
+    public async Task<IActionResult> UpdateProfile(string fullName, string email)
+    {
+        if (string.IsNullOrWhiteSpace(fullName) || string.IsNullOrWhiteSpace(email))
+        {
+            TempData["Error"] = "Todos los campos son obligatorios.";
+            return RedirectToAction("Profile");
+        }
 
-    
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (!int.TryParse(userIdClaim, out int userId))
+        {
+            return RedirectToAction("Login");
+        }
+
+        var userInDb = await auth.GetUserByIdAsync(userId);
+        if (userInDb is null)
+        {
+            return NotFound("Usuario no encontrado.");
+        }
+
+        userInDb.FullName = fullName.Trim();
+        userInDb.Email = email.Trim().ToLowerInvariant();
+
+        await auth.UpdateUserAsync(userInDb);
+
+        var currentRole = User.FindFirst(ClaimTypes.Role)?.Value ?? "Cliente";
+        await SignInAsync(userInDb.Id, userInDb.FullName, userInDb.Email, currentRole, false);
+
+        TempData["Success"] = "¡Perfil actualizado con éxito!";
+        return RedirectToAction("Profile");
+    }
 
     public IActionResult AccessDenied() => View();
 
