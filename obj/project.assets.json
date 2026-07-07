@@ -2563,31 +2563,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Marco\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\BRISS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marco\\Desktop\\Nueva carpeta (2)\\NovaEcommerce\\EcommerceMVC.csproj",
+      "projectUniqueName": "D:\\Evolucion\\EcommerceMVC\\EcommerceMVC.csproj",
       "projectName": "EcommerceMVC",
-      "projectPath": "C:\\Users\\Marco\\Desktop\\Nueva carpeta (2)\\NovaEcommerce\\EcommerceMVC.csproj",
-      "packagesPath": "C:\\Users\\Marco\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marco\\Desktop\\Nueva carpeta (2)\\NovaEcommerce\\obj\\",
+      "projectPath": "D:\\Evolucion\\EcommerceMVC\\EcommerceMVC.csproj",
+      "packagesPath": "C:\\Users\\BRISS\\.nuget\\packages\\",
+      "outputPath": "D:\\Evolucion\\EcommerceMVC\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Marco\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\BRISS\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
