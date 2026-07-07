@@ -88,7 +88,13 @@ app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
-await DatabaseSeeder.SeedAsync(app.Services);
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    await context.Database.EnsureCreatedAsync();
+}
+
+//await DatabaseSeeder.SeedAsync(app.Services);
 
 app.MapControllerRoute(
     name: "admin",

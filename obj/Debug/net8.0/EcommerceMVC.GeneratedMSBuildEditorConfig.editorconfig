@@ -9,87 +9,111 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EcommerceMVC
 build_property.RootNamespace = EcommerceMVC
-build_property.ProjectDir = C:\Users\Marco\Desktop\Nueva carpeta (2)\NovaEcommerce\
+build_property.ProjectDir = D:\Evolucion\EcommerceMVC\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Marco\Desktop\Nueva carpeta (2)\NovaEcommerce
+build_property.MSBuildProjectDirectory = D:\Evolucion\EcommerceMVC
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/Account/AccessDenied.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/Account/Login.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/Account/Profile.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/Account/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/Account/Register.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/AdminProducts/Create.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/AdminOrders/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5PcmRlcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Evolucion/EcommerceMVC/Views/AdminProducts/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/AdminProducts/Edit.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/AdminProducts/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/AdminProducts/Index.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/AdminProducts/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/AdminProducts/_ProductForm.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/AdminProducts/_ProductForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0c1xfUHJvZHVjdEZvcm0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/Home/Index.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/AdminUsers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2Vyc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Evolucion/EcommerceMVC/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Evolucion/EcommerceMVC/Views/Cart/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Evolucion/EcommerceMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/Home/Privacy.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/Products/Details.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/Orders/Checkout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXENoZWNrb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Evolucion/EcommerceMVC/Views/Orders/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Evolucion/EcommerceMVC/Views/Products/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/Products/Index.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/Shared/Error.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/Shared/_AdminSidebar.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/Shared/_AdminSidebar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pblNpZGViYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/Shared/_ProductCard.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/Shared/_ProductCard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Qcm9kdWN0Q2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/_ViewImports.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/_ViewStart.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Marco/Desktop/Nueva carpeta (2)/NovaEcommerce/Views/Shared/_Layout.cshtml]
+[D:/Evolucion/EcommerceMVC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-cd2txni9yu
