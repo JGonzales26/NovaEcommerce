@@ -15,7 +15,7 @@ public sealed class CartController(ICartService cartService) : Controller
         if (User.Identity?.IsAuthenticated == true)
         {
             var userId = GetUserId();
-            var cart = await cartService.GetCartAsync(userId);
+            var cart = await cartService.GetCartAsync(userId, "");
             return View(new CartIndexViewModel { Cart = cart, IsAuthenticated = true });
         }
 
@@ -41,7 +41,7 @@ public sealed class CartController(ICartService cartService) : Controller
             items = new();
         }
 
-        var cart = await cartService.MergeCartAsync(userId, items);
+        var cart = await cartService.MergeCartAsync(userId, items, "");
         return Json(new { success = true, totalItems = cart.TotalItems });
     }
 
@@ -70,7 +70,7 @@ public sealed class CartController(ICartService cartService) : Controller
     public async Task<IActionResult> Checkout()
     {
         var userId = GetUserId();
-        await cartService.CheckoutAsync(userId);
+        await cartService.CheckoutAsync(userId, "");
         TempData["Success"] = "Compra realizada con exito. El stock ha sido actualizado.";
         return RedirectToAction("Index");
     }
