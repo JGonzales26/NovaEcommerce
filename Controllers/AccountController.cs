@@ -77,7 +77,6 @@ public sealed class AccountController(IAuthService auth) : Controller
             return NotFound("Usuario no encontrado.");
         }
 
-        // Cargamos los ViewData tal como los busca tu archivo Profile.cshtml
         ViewData["FullName"] = user.FullName;
         ViewData["Email"] = user.Email;
         ViewData["Role"] = user.Role?.Name ?? "Cliente";
@@ -85,6 +84,8 @@ public sealed class AccountController(IAuthService auth) : Controller
 
         return View();
     }
+
+    
 
     
 
