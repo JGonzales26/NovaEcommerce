@@ -25,13 +25,18 @@
                 
                 @if (User.IsInRole(AppRoles.Admin))
                 {
-                    @* Ahora apunta directo al CRUD de Productos de tu T2 *@
                     <a asp-controller="AdminProducts" asp-action="Index" class="hover:text-emerald-700">Admin CRUD</a>
                 }
-                @if (User.Identity?.IsAuthenticated == true)
+               @if (User.Identity?.IsAuthenticated == true)
                 {
-                    <form asp-controller="Account" asp-action="Logout" method="post">
-                        <button class="rounded-md bg-zinc-900 px-4 py-2 text-white hover:bg-zinc-700">Salir</button>
+                    <a asp-controller="Orders" asp-action="Index" class="hover:text-emerald-700">Pedidos</a>
+                    
+                    <a href="/Account/Profile" class="flex items-center gap-1 font-semibold text-zinc-700 hover:text-emerald-700">
+                        <span class="max-w-[150px] truncate">Hola, @User.Identity.Name</span>
+                    </a>
+
+                    <form asp-controller="Account" asp-action="Logout" method="post" class="inline">
+                        <button class="rounded-md bg-zinc-950 px-4 py-2 text-sm text-white hover:bg-zinc-800 transition-colors">Salir</button>
                     </form>
                 }
                 else

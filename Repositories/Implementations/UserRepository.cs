@@ -22,4 +22,6 @@ public sealed class UserRepository(ApplicationDbContext db) : IUserRepository
     public async Task AddAsync(AppUser user) => await db.Users.AddAsync(user);
     public void Update(AppUser user) => db.Users.Update(user);
     public async Task SaveChangesAsync() => await db.SaveChangesAsync();
+
+
 }
