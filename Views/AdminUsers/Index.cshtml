@@ -1,0 +1,22 @@
+@model IReadOnlyList<AppUser>
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<div class="grid gap-6 lg:grid-cols-[240px_1fr]">
+    <partial name="_AdminSidebar" />
+    <section>
+        <h1 class="text-3xl font-bold">Usuarios</h1>
+        <div class="mt-6 overflow-hidden rounded-lg border bg-white">
+            <table class="w-full text-left text-sm">
+                <thead class="bg-zinc-100 text-zinc-600"><tr><th class="p-3">Nombre</th><th class="p-3">Correo</th><th class="p-3">Rol</th><th class="p-3">Estado</th></tr></thead>
+                <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr class="border-t"><td class="p-3 font-semibold">@user.FullName</td><td class="p-3">@user.Email</td><td class="p-3">@user.Role.Name</td><td class="p-3">@(user.IsActive ? "Activo" : "Inactivo")</td></tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

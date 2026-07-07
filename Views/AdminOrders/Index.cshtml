@@ -1,0 +1,22 @@
+@model IReadOnlyList<Order>
+@{
+    ViewData["Title"] = "Pedidos admin";
+}
+
+<div class="grid gap-6 lg:grid-cols-[240px_1fr]">
+    <partial name="_AdminSidebar" />
+    <section>
+        <h1 class="text-3xl font-bold">Pedidos</h1>
+        <div class="mt-6 overflow-hidden rounded-lg border bg-white">
+            <table class="w-full text-left text-sm">
+                <thead class="bg-zinc-100 text-zinc-600"><tr><th class="p-3">Pedido</th><th class="p-3">Cliente</th><th class="p-3">Estado</th><th class="p-3">Items</th><th class="p-3 text-right">Total</th></tr></thead>
+                <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr class="border-t"><td class="p-3 font-semibold">#@order.Id</td><td class="p-3">@order.User.FullName</td><td class="p-3">@order.Status</td><td class="p-3">@order.Details.Count</td><td class="p-3 text-right font-bold">S/ @order.Total.ToString("0.00")</td></tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

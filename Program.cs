@@ -55,22 +55,18 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("CustomerOnly", policy => policy.RequireRole(AppRoles.Customer, AppRoles.Admin));
 });
 
-// --- Repositorios Base T2 ---
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-
-// --- Servicios Base T2 ---
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
-
-// --- Validadores Base T2 ---
+builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
 builder.Services.AddScoped<IValidator<ProductFormViewModel>, ProductValidator>();
 builder.Services.AddScoped<IValidator<RegisterViewModel>, RegisterValidator>();
 
@@ -94,11 +90,9 @@ app.UseAuthorization();
 
 await DatabaseSeeder.SeedAsync(app.Services);
 
-// --- Rutas Ajustadas ---
 app.MapControllerRoute(
     name: "admin",
-    pattern: "Admin/{controller=AdminProducts}/{action=Index}/{id?}",
-    constraints: new { controller = "AdminProducts|AdminUsers" });
+    pattern: "Admin/{controller=Admin}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
