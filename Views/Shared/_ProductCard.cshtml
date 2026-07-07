@@ -13,10 +13,16 @@
             <span class="font-bold">S/ @Model.Price.ToString("0.00")</span>
             <span class="text-xs text-zinc-500">@Model.Stock en stock</span>
         </div>
-        <form asp-controller="Cart" asp-action="Add" method="post" class="flex gap-2">
-            <input type="hidden" name="productId" value="@Model.Id" />
-            <input type="hidden" name="quantity" value="1" />
-            <button class="w-full rounded-md bg-zinc-900 px-3 py-2 text-sm font-semibold text-white hover:bg-zinc-700">Agregar</button>
-        </form>
+        <button type="button"
+                data-product-id="@Model.Id"
+                data-product-name="@Model.Name"
+                data-product-price="@Model.Price"
+                data-product-image="@Model.ImageUrl"
+                data-product-stock="@Model.Stock"
+                onclick="cartStorage.addItem(parseInt(this.dataset.productId),this.dataset.productName,parseFloat(this.dataset.productPrice),this.dataset.productImage,1,this.dataset.productStock)"
+                class="w-full rounded-md bg-zinc-900 px-3 py-2 text-sm font-semibold text-white hover:bg-zinc-700 @(Model.Stock == 0 ? "cursor-not-allowed opacity-50" : "")"
+                @(Model.Stock == 0 ? "disabled" : "")>
+            @(Model.Stock == 0 ? "Sin stock" : "Agregar")
+        </button>
     </div>
 </article>

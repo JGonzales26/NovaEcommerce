@@ -18,6 +18,10 @@
             </button>
             <div class="hidden items-center gap-5 text-sm font-medium md:flex" data-menu>
                 <a asp-controller="Products" asp-action="Index" class="hover:text-emerald-700">Catalogo</a>
+                <a href="#" data-cart-toggle class="relative hover:text-emerald-700">
+                    Carrito
+                    <span data-cart-badge class="absolute -right-4 -top-2 hidden rounded-full bg-emerald-600 px-1.5 py-0.5 text-xs font-bold text-white"></span>
+                </a>
                 
                 @if (User.IsInRole(AppRoles.Admin))
                 {
@@ -44,6 +48,7 @@
         </nav>
         <div class="hidden border-t border-zinc-200 bg-white px-4 py-3 text-sm font-medium md:hidden" data-mobile-menu>
             <a asp-controller="Products" asp-action="Index" class="block py-2">Catalogo</a>
+            <a asp-controller="Cart" asp-action="Index" class="block py-2">Carrito</a>
             @if (User.IsInRole(AppRoles.Admin))
             {
                 <a asp-controller="AdminProducts" asp-action="Index" class="block py-2">Admin CRUD</a>
@@ -67,6 +72,43 @@
         </div>
     </footer>
 
+    @* Sidebar del carrito *@
+    <div id="cart-overlay" class="fixed inset-0 z-50 hidden bg-black/40 backdrop-blur-sm transition-opacity"></div>
+    <aside id="cart-sidebar" class="fixed right-0 top-0 z-50 flex h-full w-full max-w-md translate-x-full flex-col bg-white shadow-2xl transition-transform duration-300">
+        <div class="flex items-center justify-between border-b border-zinc-200 px-5 py-4">
+            <h2 class="text-lg font-semibold">
+                Carrito
+                <span id="cart-sidebar-header-count" class="text-sm font-normal text-zinc-500">0 productos</span>
+            </h2>
+            <button onclick="cartStorage.closeSidebar()" class="rounded-md p-1 hover:bg-zinc-100">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        <div id="cart-sidebar-empty" class="flex flex-1 flex-col items-center justify-center p-8 text-center">
+            <p class="text-zinc-400">Tu carrito esta vacio.</p>
+        </div>
+
+        <div id="cart-sidebar-content" class="flex-1 overflow-y-auto px-5 py-4" style="display:none">
+            <div id="cart-sidebar-items" class="space-y-4"></div>
+        </div>
+
+        <div id="cart-sidebar-footer" class="border-t border-zinc-200 px-5 py-4" style="display:none">
+            <div class="flex justify-between text-sm font-semibold">
+                <span>Total</span>
+                <span id="cart-sidebar-total">S/ 0.00</span>
+            </div>
+            <span class="text-xs text-zinc-500"><span id="cart-sidebar-count">0</span> productos</span>
+            <a asp-controller="Cart" asp-action="Index" class="mt-3 block rounded-md bg-emerald-600 px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-emerald-700">
+                Ir al carrito
+            </a>
+            <button onclick="cartStorage.closeSidebar()" class="mt-2 block w-full rounded-md border border-zinc-300 px-4 py-2 text-center text-sm font-medium hover:bg-zinc-50">
+                Seguir comprando
+            </button>
+        </div>
+    </aside>
+
+    <script src="~/js/cart.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
